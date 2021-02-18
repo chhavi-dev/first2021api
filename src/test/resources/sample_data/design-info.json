@@ -1,0 +1,9 @@
+{
+  "sampleData": {
+    "917db0fa-407b-4901-b1f8-555b18ba7a3f": {},
+    "bd4e2cc8-8703-4f2b-89ce-5e45e79e62c7": {},
+    "24ef0661-0f39-43e0-aee1-c35d886c1152": {
+      "payload": "sample_data/defaultnulltype_3.dwl"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="sampleJSON" format="json">
+      <types:shape format="weave" example="examples/sampleJSON.json"><![CDATA[%dw 2.0
+
+type sampleJSON = {|
+  plane: {|
+    year: String, 
+    make: String, 
+    model: String, 
+    color: String
+  |}
+|} {"example": "{\\\"plane\\\":{\\\"year\\\":\\\"1977\\\",\\\"make\\\":\\\"Cessna\\\",\\\"model\\\":\\\"Skyhawk\\\",\\\"color\\\":\\\"Light Blue and White\\\"}}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="sampleXML" format="xml">
+      <types:example format="xml" element="plane" location="examples/SampleXML.xml"/>
+    </types:type>
+    <types:type name="Outputjson" format="json">
+      <types:shape format="weave" example="examples/JSON output.txt"><![CDATA[%dw 2.0
+
+type Outputjson = {|
+  year: String, 
+  make: String, 
+  model: String, 
+  color: String
+|} {"example": "{\\\"year\\\":\\\" 1977 \\\",\\\"make\\\":\\\" Cessna \\\",\\\"model\\\":\\\" Skyhawk \\\",\\\"color\\\":\\\" Light blue and white \\\"}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#24ef0661-0f39-43e0-aee1-c35d886c1152">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="sampleXML"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="sampleJSON"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#3094aba8-d413-4c1f-86c8-6bcb34b76a57">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Outputjson"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
